@@ -1,91 +1,124 @@
 "use strict;"
 
-/*1. Створи об'єкт, що описує автомобіль 
-(виробник, модель, рік випуску, середня швидкість, 
-обсяг паливного баку, середня витрата палива на 100 км., водії), 
-і наступні методи для роботи з цим об'єктом:
-*/
-//1 Метод, який виводить на екран інформацію про автомобіль.
-const drivers_list = {
-        driver1: 'Alex Tim',
-        driver2: 'Jack Jonhson',
-        driver3: 'Jack Sparow',
-        driver4: 'Michel Jakson'
+/*1. */
+const color_list = ['red', 'white', 'black'];
+
+
+color_list.push('yellow');
+console.log(color_list.shift());
+console.log(color_list.shift());
+console.log(color_list.shift());
+console.log(color_list.unshift('violet'));
+console.log(color_list);
+
+for(let i = 0; i < color_list.length; i++){
+        console.log(color_list[i]);
 }
 
-const car_information = {
-        producer: 'Ford',
-        model: 'Escort',
-        'year of production': 2016,
-        'everage speed': '110 km/h',
-        'the volume of the fuel tank': '60 liters',
-        'average fuel consumption per 100 km': '5 liters',
-        drivers(){ 
-                return `${drivers_list.driver1},
-                ${drivers_list.driver2},
-                ${drivers_list.driver3},
-                ${drivers_list.driver4}
-        `},
-        fullinformation(){
-                return `${this.producer},
-                 ${this.model},
-                 ${this["year of production"]},
-                 ${this["everage speed"]},
-                 ${this["the volume of the fuel tank"]},
-                 ${this["average fuel consumption per 100 km"]},
-                 ${this.drivers()}`
+for (const element of color_list) {
+        console.log(element);
+}
+
+
+/*1Створіть масив styles з елементами “Jazz” та “Blues”.
+Додайте “Rock-n-Roll” в кінець масиву.
+Замініть значення в середині масиву на “Classics”. Ваш код для пошуку медіанного елемента має працювати для будь-яких масивів непарної довжини.
+Видаліть перший елемент масиву та покажіть його.
+Вставте Rap та Reggae на початок масиву.*/
+
+const styles = ['Jazz', 'Blues'];
+console.log(styles);
+styles[2] = 'Rock-n-Roll';
+console.log(styles);
+styles[1] = 'Classics';
+console.log(styles);
+styles.shift();
+console.log(styles);
+styles.unshift('Rap');
+styles.unshift('Reggae');
+console.log(styles);
+
+/*Створи масив «Список покупок». Кожен елемент масиву є об'єктом, який містить 
+назву продукту, 
+кількість і 
+куплений він чи ні,
+ ціну за одиницю товару, 
+ сума. Написати кілька функцій для роботи з таким масивом:
+Виводити весь список на екран таким чином, щоб спочатку йшли продукти, що ще не придбані, а потім - ті, що вже придбали.
+Покупка продукту. Функція приймає назву продукту і відзначає його як придбаний. */
+
+const shopping_list = [
+        {
+                product_name: 'Orange',
+                amount: 30,
+                bought: 'yes',
+                price: 7.8,
+                totally_amount: 234
         },
-        nameInTheList: function(){
-                switch(drivers_name){
-                        case 'Alex':
-                        alert(`The Alex Tim is in the list.`);
-                        break;
-                        case 'Jack':
-                        alert(`This Jack Jonhson is in the list.`);
-                        break;
-                        case 'Sparow':
-                        alert(`This Jack Sparow is in the list.`);
-                        break;
-                        case 'Michel':
-                        alert(`This Michel Jakson is in the list.`);
-                        break;
-                        case 'Valeriy':
-                        alert(`This Valeriy Timchenko is in the list.`);
-                        break;
-                }
+        {
+                product_name: 'Lemon',
+                amount: 30,
+                bought: 'no',
+                price: 1,
+                totally_amount: 30
         },
-        patrol: function(){
-                let patrolValue = (user_distance/100)*5;
-        },
-        time: function(){
-                let resultOfRoad;
-                let timeValue = (user_distance/110);
-                if (timeValue > 4) {
-                        let additionalTime = timeValue/4; 
-                       return Math.floor(resultOfRoad = timeValue + additionalTime);
-                } 
+        {
+                product_name: 'Carrot',
+                amount: 10,
+                bought: 'yes',
+                price: 5,
+                totally_amount: 50
         }
-}
+];
 
-alert(car_information.fullinformation());
+const shoppingList = [
+        {
+          productName: 'Orange',
+          amount: 30,
+          bought: 'yes',
+          price: 7.8,
+          totallyAmount: 234
+        },
+      
+      ];
+      
+      
+function printShoppingList(list) {
+        
+        list.sort((a, b) => (a.bought === 'yes') - (b.bought === 'yes'));
+      
+        console.log('Список покупок:');
+        list.forEach(item => {
+          console.log(`* ${item.product_name} (${item.amount}): ${item.bought}, вартість: ${item.totally_amount}`);
+        });
+      }
+      
+      // Функція для відмітки продукту як купленного
+      function buyProduct(list, productName) {
+        const product = list.find(item => item.product_name === productName);
+        if (product) {
+          product.bought = 'yes';
+          console.log(`Продукт '${productName}' відмічено як куплений.`);
+        } else {
+          console.log(`Продукт '${productName}' не знайдено в списку.`);
+        }
+      }
+      
+      // Виведення початкового списку
+      printShoppingList(shopping_list);
+      
+      // Покупка лимонів
+      buyProduct(shopping_list, 'Lemon');
+      
+      // Виведення оновленого списку
+      printShoppingList(shopping_list);
 
-//2 Додавання ім’я водія у список
-drivers_list.driver5 = 'Valeriy Timchenko';
-
-for (const key in drivers_list) {
-        alert(`${key} = ${drivers_list[key]}`);
-        console.log(`${key} = ${drivers_list[key]}`);
-}
-//3 Перевірка водія на наявність його ім’я у списку
-
-const drivers_name = prompt('Please, enter drivers name');
-
-car_information.nameInTheList();
-
-//4 Підрахунок необхідного часу та кількості 
-//палива для подолання переданої відстані з середньою швидкістю. 
-//Враховуй, що через кожні 4 години дороги водієві необхідно робити перерву на 1 годину. 
-
-const user_distance = prompt('Please enter the distance');
-
-alert(car_information.time());
+      //Норма
+      /*Видалення продукту зі списку (видалення повинно проводитися 
+      шляхом створення нового масиву, в якому продукт, що ми шукаємо, буде відсутнім) */
+      function deleteProduct(shoppingList, productName) {
+       
+        const newShoppingList = shoppingList.filter(item => item.product_name !== productName);
+      
+        return newShoppingList;
+      }
